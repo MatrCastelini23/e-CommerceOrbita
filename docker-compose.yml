@@ -9,7 +9,7 @@ services:
     container_name: frontend-container
     restart: always
     ports:
-      - "${FRONT_PORT:-5173}:5173"
+      - "${FRONT_PORT:-5173}:${FRONT_CONTAINER_PORT:-5173}"
     volumes:
       # Se as variáveis estiverem vazias, o Docker ignora a montagem
       - ${LOCAL_CODE_PATH:-./}:${LOCAL_CONTAINER_PATH:-/app}:ro
