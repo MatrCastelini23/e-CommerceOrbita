@@ -14,12 +14,17 @@ jobs:
 
     - name: Compilar Imagem de Produção e Iniciar Container
       run: |
-        # Injeta as variáveis para o Compose saber que deve compilar o estágio 'prod'
         export DOCKER_TARGET_FRONT=prod
         export FRONT_PORT=80
         
-        # Reconstrói a imagem localmente usando o código recém-baixado pelo checkout
+        # 1. Derruba o container antigo e limpa a rede se ele existir
+        docker compose down || true
+        
+        # 2. Remove o container antigo pelo nome explicitamente para garantir que a porta/nome fiquem livres
+        docker rm -f frontend-container || true
+        
+        # 3. Reconstrói a imagem localmente sem cache
         docker compose build --no-cache frontend
         
-        # Sobe o container atualizado
-        docker compose up -d --force-recreate frontend
+        # 4. Sobe o novo container atualizado
+        docker compose up -d frontend
