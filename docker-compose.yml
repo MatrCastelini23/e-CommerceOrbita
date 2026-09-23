@@ -4,13 +4,13 @@ services:
   frontend:
     build:
       context: .
-      target: ${DOCKER_TARGET_FRONT} # Lê do .env (dev ou prod)
+      target: ${DOCKER_TARGET_FRONT:-dev}
     image: meu-projeto-frontend:latest
     container_name: frontend-container
     restart: always
     ports:
-      - "${FRONT_PORT}:5173" # Local mapeia 5173:80 (Vite), Prod mapeia 80:80 (Nginx)
+      - "${FRONT_PORT:-5173}:5173"
     volumes:
-      # Esse volume só será usado se você estiver em modo dev (mapeando seu código local)
-      - .:/app:ro
-      - /app/node_modules
+      # Se as variáveis estiverem vazias, o Docker ignora a montagem
+      - ${LOCAL_CODE_PATH:-./}:${LOCAL_CONTAINER_PATH:-/app}:ro
+      - ${LOCAL_NODE_MODULES:-/app/node_modules}
