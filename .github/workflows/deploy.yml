@@ -1,25 +1,10 @@
-name: Deploy Front-end Local
-
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  build-and-deploy:
-    runs-on: [self-hosted, prod-front]
-    
-    steps:
-    - name: Checkout do código
-      uses: actions/checkout@v4
-
-        # ... (mantenha o topo do workflow igual)
     - name: Compilar Imagem de Produção e Iniciar Container
       run: |
         export DOCKER_TARGET_FRONT=prod
-        export FRONT_PORT=80
+        export FRONT_PORT=80               # Porta de fora (acesso no navegador)
+        export FRONT_CONTAINER_PORT=80     # Porta de dentro (onde o Nginx escuta) [1]
         
-        # Sobrescrita mágica: Apontamos o host para o próprio container path. 
-        # Isso faz o Docker montar a pasta interna nela mesma, o que resulta em ZERO alterações ou erros no Nginx.
+        # Sobrescrita dos volumes que fizemos antes
         export LOCAL_CODE_PATH=/usr/share/nginx/html
         export LOCAL_CONTAINER_PATH=/usr/share/nginx/html
         export LOCAL_NODE_MODULES=/usr/share/nginx/html
