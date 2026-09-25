@@ -8,24 +8,26 @@ jobs:
   build-and-deploy:
     runs-on: [self-hosted, prod-front]
     
+    environment: production
+
     steps:
     - name: Checkout do código
       uses: actions/checkout@v4
 
-        # ... (mantenha o topo do workflow igual)
     - name: Compilar Imagem de Produção e Iniciar Container
+      env:
+        DOCKER_TARGET_FRONT: prod
+        FRONT_PORT: 80
+        FRONT_CONTAINER_PORT: 80
+        LOCAL_CODE_PATH: /usr/share/nginx/html
+        LOCAL_CONTAINER_PATH: /usr/share/nginx/html
+        LOCAL_NODE_MODULES: /usr/share/nginx/html
+        VITE_API_URL: ${{ vars.VITE_API_URL }}
       run: |
-        export DOCKER_TARGET_FRONT=prod
-        export FRONT_PORT=80               # Porta de fora (acesso no navegador)
-        export FRONT_CONTAINER_PORT=80     # Porta de dentro (onde o Nginx escuta) [1]
-        
-        # Sobrescrita dos volumes que fizemos antes
-        export LOCAL_CODE_PATH=/usr/share/nginx/html
-        export LOCAL_CONTAINER_PATH=/usr/share/nginx/html
-        export LOCAL_NODE_MODULES=/usr/share/nginx/html
-        
+        # Injeta a variável no build para que o Vite capture ela durante a compilação do React
         docker compose down || true
         docker rm -f frontend-container || true
         
-        docker compose build --no-cache frontend
+        # Passamos a variável de ambiente para o comando build do compose ler
+        VITE_API_URL=$VITE_API_URL docker compose build --no-cache frontend
         docker compose up -d frontend
