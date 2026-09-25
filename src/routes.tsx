@@ -4,6 +4,7 @@ import { Contato } from "./pages/Contato"
 import { Produto } from "./pages/Produtos/Produto"
 import { Produtos } from "./pages/Produtos"
 import { Sobre } from "./pages/Sobre"
+import { NoRoute } from "./pages/NoRoute"
 
 
 
@@ -30,6 +31,10 @@ export const Rota = () => {
                 <Route
                     path="/sobre"
                     element={<Sobre />}
+                />
+                <Route
+                    path="*"
+                    element={<NoRoute />}
                 />
             </Routes>
         </BrowserRouter>
