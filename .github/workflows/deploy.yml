@@ -27,5 +27,7 @@ jobs:
         docker compose down || true
         docker rm -f frontend-container || true
         
+        rm -f .env .env.production .env.local || true
+
         VITE_URL_PRODUTOS=$VITE_URL_PRODUTOS docker compose build --no-cache frontend
         docker compose up -d frontend
