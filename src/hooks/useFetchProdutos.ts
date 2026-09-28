@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-const BASE_URL = "https://api.escuelajs.co/api/v1";
+const BASE_URL = import.meta.env.VITE_URL_PRODUTOS;
 
 interface ICategoryProduto {
     id: number,

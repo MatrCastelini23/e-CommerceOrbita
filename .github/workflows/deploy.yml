@@ -24,10 +24,8 @@ jobs:
         LOCAL_NODE_MODULES: /usr/share/nginx/html
         VITE_API_URL: ${{ vars.VITE_API_URL }}
       run: |
-        # Injeta a variável no build para que o Vite capture ela durante a compilação do React
         docker compose down || true
         docker rm -f frontend-container || true
         
-        # Passamos a variável de ambiente para o comando build do compose ler
-        VITE_API_URL=$VITE_API_URL docker compose build --no-cache frontend
+        VITE_URL_PRODUTOS=$VITE_URL_PRODUTOS docker compose build --no-cache frontend
         docker compose up -d frontend
