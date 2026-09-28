@@ -10,6 +10,7 @@ CMD ["npm", "run", "dev", "--", "--host"]
 
 
 FROM base AS build-prod
+ARG VITE_URL_PRODUTOS
 RUN npm run build
 
 

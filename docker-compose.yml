@@ -3,6 +3,8 @@ services:
     build:
       context: .
       target: ${DOCKER_TARGET_FRONT:-dev}
+      args:
+        - VITE_URL_PRODUTOS=${VITE_URL_PRODUTOS}
     image: meu-projeto-frontend:latest
     container_name: frontend-container
     restart: always
