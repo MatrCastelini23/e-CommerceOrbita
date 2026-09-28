@@ -10,7 +10,7 @@ export const Home = () => {
 
     if (loading === true) return (<Loader2 />)
 
-    if (error) return (<Navigate to={"/notfound"} />)
+    if (error != null) return (<Navigate to={"/notfound"} />)
 
     if (!produtos) return (
         <div>
