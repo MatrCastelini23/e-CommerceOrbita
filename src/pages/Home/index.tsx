@@ -2,7 +2,7 @@ import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 import { useFetchProdutos } from "../../hooks/useFetchProdutos"
 import { Loader2 } from "lucide-react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
     const { produtos, loading, error } = useFetchProdutos({ offset: 0, limit: 5 });
@@ -10,7 +10,7 @@ export const Home = () => {
 
     if (loading === true) return (<Loader2 />)
 
-    if (error != null) return (<Navigate to={"/notfound"} />)
+    if (error) return (<div> Erro ao buscar produtos</div>)
 
     if (!produtos) return (
         <div>
