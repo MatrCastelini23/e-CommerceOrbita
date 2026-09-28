@@ -22,7 +22,7 @@ jobs:
         LOCAL_CODE_PATH: /usr/share/nginx/html
         LOCAL_CONTAINER_PATH: /usr/share/nginx/html
         LOCAL_NODE_MODULES: /usr/share/nginx/html
-        VITE_API_URL: ${{ vars.VITE_API_URL }}
+        VITE_URL_PRODUTOS: ${{ vars.VITE_URL_PRODUTOS }}
       run: |
         docker compose down || true
         docker rm -f frontend-container || true
