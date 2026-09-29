@@ -25,6 +25,12 @@ interface IUseFetchProdutosResult {
     error: unknown,
 }
 
+interface IUseFetchProdutoResult {
+    produto: IProduto | null,
+    loading: boolean,
+    error: unknown,
+}
+
 interface IUseFetchProdutosProps {
     offset: number,
     limit: number,
@@ -46,4 +52,22 @@ export function useFetchProdutos(props: IUseFetchProdutosProps): IUseFetchProdut
     }, [props])
 
     return { produtos, loading, error }
-}  
+}
+
+export function useFetchProduto(id: number): IUseFetchProdutoResult {
+    const [produto, setProduto] = useState<IProduto | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<unknown>(null);
+
+    useEffect(() => {
+        fetch(`${BASE_URL}/products/${id}`)
+            .then(res => {
+                if (!res.ok) throw new Error(`Produto não encontrado ${res.status}`)
+                return res.json();
+            })
+            .then(data => { setProduto(data); setLoading(false) })
+            .catch(err => { setError(err); setLoading(false) })
+    })
+
+    return { produto, loading, error };
+}
