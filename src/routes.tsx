@@ -5,6 +5,7 @@ import { Produto } from "./pages/Produtos/Produto"
 import { Produtos } from "./pages/Produtos"
 import { Sobre } from "./pages/Sobre"
 import { NoRoute } from "./pages/NoRoute"
+import { Carrinho } from "./pages/Carrinho"
 
 
 
@@ -31,6 +32,10 @@ export const Rota = () => {
                 <Route
                     path="/sobre"
                     element={<Sobre />}
+                />
+                <Route
+                    path="/carrinho"
+                    element={<Carrinho />}
                 />
                 <Route
                     path="*"
