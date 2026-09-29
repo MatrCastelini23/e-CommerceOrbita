@@ -1,11 +1,14 @@
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
-export const Contato = () => {
+export const Carrinho = () => {
+
     return (
         <>
             <Header />
-            <h1>Contato</h1>
+            <div>
+                <h1>Aqui ficará o carrinho dos usuarios</h1>
+            </div>
             <Footer />
         </>
     )
