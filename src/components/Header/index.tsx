@@ -16,7 +16,7 @@ export const Header = () => {
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
                 <div>
                     <img
-                        src="https://ecommerce-orbita.vercel.app/logo_orbita_ecommerce.png"
+                        src="/logo_orbita_ecommerce.png"
                         alt="Órbita Ecommerce"
                         className="cursor-pointer"
                         style={{ width: "300px" }}
