@@ -49,7 +49,7 @@ export function useFetchProdutos(props: IUseFetchProdutosProps): IUseFetchProdut
             })
             .then(data => { setProdutos(data); setLoading(false) })
             .catch(err => { setError(err); setLoading(false) })
-    }, [props])
+    }, [props.offset, props.limit])
 
     return { produtos, loading, error }
 }
@@ -67,7 +67,7 @@ export function useFetchProduto(id: number): IUseFetchProdutoResult {
             })
             .then(data => { setProduto(data); setLoading(false) })
             .catch(err => { setError(err); setLoading(false) })
-    })
+    }, [id])
 
     return { produto, loading, error };
 }
