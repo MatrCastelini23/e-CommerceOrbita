@@ -68,30 +68,30 @@ export const Home = () => {
     return (
         <>
             <Header />
-            <div className="mx-auto w-full max-w-7xl space-y-12 px-4 py-10">
-                <div className="relative w-full overflow-hidden">
-                    <button
-                        type="button"
-                        aria-label="Próximo banner"
-                        onClick={bannerAnterior}
-                        className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-xl text-stone-800 shadow hover:bg-white"
-                    >
-                        <CircleChevronLeft />
-                    </button>
-                    <img
-                        src={banners[banner].src}
-                        alt={banners[banner].alt}
-                        className="h-48 w-full object-cover sm:h-72 lg:h-96"
-                    />
-                    <button
-                        type="button"
-                        aria-label="Próximo banner"
-                        onClick={proximoBanner}
-                        className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-xl text-stone-800 shadow hover:bg-white"
-                    >
-                        <CircleChevronRight />
-                    </button>
-                </div>
+            <div className="relative w-full h-150 overflow-hidden">
+                <button
+                    type="button"
+                    aria-label="Próximo banner"
+                    onClick={bannerAnterior}
+                    className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-xl text-stone-800 shadow hover:bg-white"
+                >
+                    <CircleChevronLeft />
+                </button>
+                <img
+                    src={banners[banner].src}
+                    alt={banners[banner].alt}
+                    className="min-h-full w-full object-cover sm:h-72 lg:h-96"
+                />
+                <button
+                    type="button"
+                    aria-label="Próximo banner"
+                    onClick={proximoBanner}
+                    className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-xl text-stone-800 shadow hover:bg-white"
+                >
+                    <CircleChevronRight />
+                </button>
+            </div>
+            <div className="mx-auto w-full max-w-8xl space-y-12 px-4 py-20">
                 {secoes.map(({ titulo, lista }) => (
                     <section key={titulo} aria-label={titulo}>
                         <div className="mb-4 flex items-baseline justify-between border-b border-stone-200 pb-2">
